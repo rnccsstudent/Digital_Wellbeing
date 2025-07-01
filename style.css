@@ -113,3 +113,19 @@ form button {
   background: green;
   color: white;
 }
+input[type="range"] {
+  appearance: none;
+  height: 6px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  background: #007bff;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
