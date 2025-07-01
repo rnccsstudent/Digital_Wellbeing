@@ -32,18 +32,25 @@ const weeklyData = [
   { day: 'Sat', date: '2025-06-14' }
 ];
 
-function renderGraph() {
+function renderGraph(selectedDate = null) {
   const graph = document.getElementById('graph');
   graph.innerHTML = '';
   weeklyData.forEach(data => {
     const bar = document.createElement('div');
     bar.className = 'bar';
+    if (data.date === selectedDate) {
+      bar.classList.add('selected');
+    }
     bar.style.height = '80%';
     bar.innerHTML = `<small>${data.day}</small>`;
-    bar.onclick = () => loadDayData(data.date);
+    bar.onclick = () => {
+      loadDayData(data.date);
+      renderGraph(data.date); // Highlight selected bar
+    };
     graph.appendChild(bar);
   });
 }
+
 
 function renderAppList(apps) {
   const list = document.getElementById('appList');
@@ -72,7 +79,10 @@ function loadDayData(date) {
     label.textContent = date;
     renderAppList([]);
   }
+
+  renderGraph(date); // highlight bar when selected from date picker
 }
+
 
 // Date Picker
 document.getElementById('datePicker').addEventListener('change', (e) => {
