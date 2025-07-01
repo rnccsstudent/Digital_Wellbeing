@@ -1,0 +1,22 @@
+{
+  "2025-06-08": {
+    "day": "Sunday",
+    "total": "14 hrs, 17 mins",
+    "apps": [
+      { "name": "ChatGPT", "time": "5 hrs, 1 min" },
+      { "name": "YouTube", "time": "2 hrs, 47 mins" },
+      { "name": "Free Fire MAX", "time": "1 hr, 49 mins" },
+      { "name": "Facebook", "time": "1 hr, 20 mins" },
+      { "name": "Drive", "time": "48 mins" }
+    ]
+  },
+  "2025-06-10": {
+    "day": "Tuesday",
+    "total": "8 hrs, 40 mins",
+    "apps": [
+      { "name": "YouTube", "time": "3 hrs" },
+      { "name": "Facebook", "time": "2 hrs" },
+      { "name": "Instagram", "time": "1 hr, 20 mins" }
+    ]
+  }
+}
