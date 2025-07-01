@@ -2,36 +2,46 @@ let activityData = {};
 let pieChart = null;
 
 const weeklyData = [
-  { day: 'Sun', date: '2025-06-08' },
-  { day: 'Mon', date: '2025-06-09' },
-  { day: 'Tue', date: '2025-06-10' },
-  { day: 'Wed', date: '2025-06-11' },
-  { day: 'Thu', date: '2025-06-12' },
-  { day: 'Fri', date: '2025-06-13' },
-  { day: 'Sat', date: '2025-06-14' }
+  { day: 'Sun', date: '2025-06-08', hrs: 15 },
+  { day: 'Mon', date: '2025-06-09', hrs: 12 },
+  { day: 'Tue', date: '2025-06-10', hrs: 8 },
+  { day: 'Wed', date: '2025-06-11', hrs: 10 },
+  { day: 'Thu', date: '2025-06-12', hrs: 11 },
+  { day: 'Fri', date: '2025-06-13', hrs: 13 },
+  { day: 'Sat', date: '2025-06-14', hrs: 9 }
 ];
+
 
 function renderGraph(selectedDate = null) {
   const graph = document.getElementById('graph');
   graph.innerHTML = '';
+
+  const maxHours = Math.max(...weeklyData.map(d => d.hrs)); // Find max for scaling
+
   weeklyData.forEach(data => {
     const bar = document.createElement('div');
     bar.className = 'bar';
-    if (data.date === selectedDate) bar.classList.add('selected');
 
-    // Add tooltip
-    const tooltip = document.createElement('span');
-    tooltip.className = 'tooltip';
-    tooltip.textContent = activityData[data.date]?.total || 'No data';
-    bar.appendChild(tooltip);
+    const heightPercent = (data.hrs / maxHours) * 100;
+    bar.style.height = '0%'; // animate from 0
 
-    // Animate bar height
-    bar.style.height = '0%';
     setTimeout(() => {
-      bar.style.height = '80%';
+      bar.style.height = `${heightPercent}%`;
     }, 100);
 
-    bar.innerHTML += `<small>${data.day}</small>`;
+    if (data.date === selectedDate) bar.classList.add('selected');
+
+    // Tooltip
+    const tooltip = document.createElement('span');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = `${data.hrs} hrs`;
+    bar.appendChild(tooltip);
+
+    // Day label
+    const label = document.createElement('small');
+    label.textContent = data.day;
+    bar.appendChild(label);
+
     bar.onclick = () => {
       loadDayData(data.date);
       renderGraph(data.date);
@@ -40,6 +50,7 @@ function renderGraph(selectedDate = null) {
     graph.appendChild(bar);
   });
 }
+
 
 function renderAppList(apps, totalTimeInMins) {
   const list = document.getElementById('appList');
