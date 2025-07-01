@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Activity Tracker</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="dark">
   <div class="container">
@@ -24,6 +25,9 @@
 
     <h3>App Usage</h3>
     <ul id="appList"></ul>
+    <h3>App Usage Breakdown</h3>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+
   </div>
 
   <script src="script.js"></script>
