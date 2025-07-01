@@ -75,6 +75,38 @@ input {
   transform: scale(1.05);
   transition: all 0.3s;
 }
+.bar {
+  width: 10%;
+  background-color: var(--bar-color);
+  text-align: center;
+  margin: 0 2px;
+  color: var(--text-color);
+  position: relative;
+  cursor: pointer;
+  transition: height 0.5s ease;
+}
+
+.bar:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 8px;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  white-space: nowrap;
+}
 
 
 form button {
