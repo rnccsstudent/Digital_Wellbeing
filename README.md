@@ -46,9 +46,7 @@ This project is a **web-based activity tracker** inspired by Digital Wellbeing t
 
    Visit https://<your-username>.github.io/Digital_Wellbeing
 ---
-🚀 Deployment
-   🌐 [Live Demo](https://rnccsstudent.github.io/Digital_Wellbeing/)
-   <h3>🚀 Deployment</h3>
+ <h3>🚀 Deployment</h3>
 <p style="font-size: 14px;">
 🌐 <a href="https://rnccsstudent.github.io/Digital_Wellbeing/" target="_blank">Live Demo</a>
 </p>
