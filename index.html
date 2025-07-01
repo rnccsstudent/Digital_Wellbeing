@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activity Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+  <div class="container">
+    <button id="toggleMode">Switch to Light Mode</button>
+
+    <h1>Activity details</h1>
+    <div class="summary">
+      <p><strong id="totalTime">14 hrs, 17 mins</strong></p>
+      <p>Sun, 8 Jun</p>
+    </div>
+
+    <div class="bar-graph" id="graph"></div>
+
+    <h3>App Usage</h3>
+    <ul id="appList"></ul>
+
+    <h3>Add New App</h3>
+    <form id="addAppForm">
+      <input type="text" id="appName" placeholder="App Name" required />
+      <input type="text" id="appTime" placeholder="Time (e.g., 1 hr, 10 mins)" required />
+      <button type="submit">Add App</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
