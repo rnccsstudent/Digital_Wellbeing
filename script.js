@@ -1,27 +1,5 @@
-const activityData = {
-  "2025-06-08": {
-    day: "Sunday",
-    total: "14 hrs, 17 mins",
-    apps: [
-      { name: "ChatGPT", time: "5 hrs, 1 min" },
-      { name: "YouTube", time: "2 hrs, 47 mins" },
-      { name: "Free Fire MAX", time: "1 hr, 49 mins" },
-      { name: "Facebook", time: "1 hr, 20 mins" },
-      { name: "Drive", time: "48 mins" }
-    ]
-  },
-  "2025-06-10": {
-    day: "Tuesday",
-    total: "8 hrs, 40 mins",
-    apps: [
-      { name: "YouTube", time: "3 hrs" },
-      { name: "Facebook", time: "2 hrs" },
-      { name: "Instagram", time: "1 hr, 20 mins" }
-    ]
-  }
-};
+let activityData = {};
 
-// Weekly summary for graph
 const weeklyData = [
   { day: 'Sun', date: '2025-06-08' },
   { day: 'Mon', date: '2025-06-09' },
@@ -38,19 +16,29 @@ function renderGraph(selectedDate = null) {
   weeklyData.forEach(data => {
     const bar = document.createElement('div');
     bar.className = 'bar';
-    if (data.date === selectedDate) {
-      bar.classList.add('selected');
-    }
-    bar.style.height = '80%';
-    bar.innerHTML = `<small>${data.day}</small>`;
+    if (data.date === selectedDate) bar.classList.add('selected');
+
+    // Add tooltip
+    const tooltip = document.createElement('span');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = activityData[data.date]?.total || 'No data';
+    bar.appendChild(tooltip);
+
+    // Animate bar height
+    bar.style.height = '0%';
+    setTimeout(() => {
+      bar.style.height = '80%';
+    }, 100);
+
+    bar.innerHTML += `<small>${data.day}</small>`;
     bar.onclick = () => {
       loadDayData(data.date);
-      renderGraph(data.date); // Highlight selected bar
+      renderGraph(data.date);
     };
+
     graph.appendChild(bar);
   });
 }
-
 
 function renderAppList(apps) {
   const list = document.getElementById('appList');
@@ -80,9 +68,16 @@ function loadDayData(date) {
     renderAppList([]);
   }
 
-  renderGraph(date); // highlight bar when selected from date picker
+  renderGraph(date);
 }
 
+// Load data from external JSON
+fetch('activityData.json')
+  .then(response => response.json())
+  .then(data => {
+    activityData = data;
+    renderGraph();
+  });
 
 // Date Picker
 document.getElementById('datePicker').addEventListener('change', (e) => {
@@ -90,7 +85,7 @@ document.getElementById('datePicker').addEventListener('change', (e) => {
   loadDayData(selectedDate);
 });
 
-// Dark/Light Mode Toggle
+// Mode toggle
 document.getElementById('toggleMode').addEventListener('click', () => {
   const body = document.body;
   const btn = document.getElementById('toggleMode');
@@ -98,6 +93,3 @@ document.getElementById('toggleMode').addEventListener('click', () => {
   body.classList.toggle('light');
   btn.textContent = body.classList.contains('dark') ? "Switch to Light Mode" : "Switch to Dark Mode";
 });
-
-// Init
-renderGraph();
