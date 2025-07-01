@@ -69,6 +69,13 @@ input {
   margin: 5px;
   width: 40%;
 }
+.bar.selected {
+  background-color: #00cfff !important;
+  border: 2px solid #fff;
+  transform: scale(1.05);
+  transition: all 0.3s;
+}
+
 
 form button {
   background: green;
